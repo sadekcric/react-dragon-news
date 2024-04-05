@@ -1,16 +1,25 @@
 import { Link, NavLink } from "react-router-dom";
 import defaultProfile from "../../assets/user.png";
+import { useContext } from "react";
+import { AuthContext } from "../../Routs/AuthProvider";
 
 const Nav = () => {
+  const { user, logOut } = useContext(AuthContext);
+
+  const handleLogout = () => {
+    logOut()
+      .then()
+      .catch((err) => console.error(err));
+  };
   const navLink = (
     <>
-      <li className="text-lg">
+      <li>
         <NavLink to="/">Home</NavLink>
       </li>
-      <li className="text-lg">
+      <li>
         <NavLink to="/about">About</NavLink>
       </li>
-      <li className="text-lg">
+      <li>
         <NavLink to="/career">Career</NavLink>
       </li>
     </>
@@ -39,9 +48,17 @@ const Nav = () => {
           <div className="w-12">
             <img className="w-full" src={defaultProfile} alt="" />
           </div>
-          <Link to="/login" className="btn bg-gray-900 text-white px-6 ml-5 text-lg">
-            Log in
-          </Link>
+          <div>
+            {user ? (
+              <button onClick={handleLogout} className="btn bg-gray-900 text-white px-6 ml-5">
+                Logout
+              </button>
+            ) : (
+              <Link to="/login" className="btn bg-gray-900 text-white px-6 ml-5">
+                Log in
+              </Link>
+            )}
+          </div>
         </div>
       </div>
     </div>
