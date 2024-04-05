@@ -1,4 +1,3 @@
-import { useLoaderData } from "react-router-dom";
 import Marque from "../Components/Marque";
 import Header from "../Components/Shared/Header";
 import LeftSideNav from "../Components/Shared/LeftSideNav";
